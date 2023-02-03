@@ -2,9 +2,21 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { BsChevronCompactRight } from "react-icons/bs";
-import { RxTriangleUp } from "react-icons/rx";
+import { RxTriangleDown, RxTriangleUp } from "react-icons/rx";
+import Header from "../components/Header";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      const res = await fetch("/api/transactions");
+      const data = await res.json();
+      setTransactions(data);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,13 +25,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="flex flex-col justify-center items-center w-full bg-gray-600">
-        <div className="mb-20">MoneyBalance</div>
-        <div className="flex justify-evenly">
-          <p>Home</p>
-          <p>Settings</p>
-        </div>
-      </section>
+      <Header />
+
+      <div>
+        <h1>All Transactions</h1>
+        {transactions.length === 0 ? (
+          <div>Loading ...</div>
+        ) : (
+          transactions.map((transaction) => (
+            <div key={transaction.id}>
+              <p>{transaction.date}</p>
+            </div>
+          ))
+        )}
+      </div>
 
       <section className="bg-gray-100">
         <div className="flex flex-col min-h-screen">
@@ -108,6 +127,54 @@ export default function Home() {
 
           {/* end individual card  */}
 
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">7</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$303</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+          </div>
+          {/* end balance div  */}
+
+          {/* end individual card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">8</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$$303</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+          </div>
+          {/* end balance div  */}
+
           {/* end individual card  */}
 
           {/* indiv. card  */}
@@ -123,17 +190,16 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$0.23</span>
+                  <span className="text-green-500">$303</span>
                 </p>
               </div>
               <div>
                 <BsChevronCompactRight className="text-5xl" />
               </div>
             </div>
+            {/* end balance div  */}
           </div>
-          {/* end balance div  */}
-
-          {/* end individual card  */}
+          {/* end card  */}
 
           {/* indiv. card  */}
           <div className="flex mt-2">
@@ -148,17 +214,16 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$303</span>
                 </p>
               </div>
               <div>
                 <BsChevronCompactRight className="text-5xl" />
               </div>
             </div>
+            {/* end balance div  */}
           </div>
-          {/* end balance div  */}
-
-          {/* end individual card  */}
+          {/* end card  */}
 
           {/* indiv. card  */}
           <div className="flex mt-2">
@@ -173,7 +238,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$303</span>
                 </p>
               </div>
               <div>
@@ -191,22 +256,47 @@ export default function Home() {
               <p className="text-5xl">12</p>
             </div>
             {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-green-500">$42.00</span>
-                </p>
+            {/* balance and transactions divdiv  */}
+
+            <div className="bg-white p-6 rounded-lg shadow-lg flex">
+              <div className="mr-4">
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <p>
+                      Balance
+                      <br />
+                      <span className="text-green-500">$184.54</span>
+                    </p>
+                  </div>
+                  <div className="mt-14">
+                    <p>
+                      <RxTriangleDown className="text-red-500" /> $118.46
+                    </p>
+                  </div>
+                </div>
+
+                {/* end balance div  */}
               </div>
-              <div>
-                <BsChevronCompactRight className="text-5xl" />
+              <div className="flex flex-col">
+                <h2 className="underline">Transactions</h2>
+                <table>
+                  <tr>
+                    <td>Progressive</td>
+                    <td className="text-red-500">$118.46</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">total:</td>
+                    <td className="text-red-500">$118.46</td>
+                  </tr>
+                </table>
               </div>
             </div>
-            {/* end balance div  */}
           </div>
-          {/* end card  */}
+
+          {/* end individual card  */}
 
           {/* indiv. card  */}
           <div className="flex mt-2">
@@ -221,7 +311,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$184.54</span>
                 </p>
               </div>
               <div>
@@ -245,7 +335,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$842.00</span>
+                  <span className="text-green-500">$184.54</span>
                 </p>
               </div>
               <div>
@@ -269,7 +359,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$184.54</span>
                 </p>
               </div>
               <div>
@@ -293,7 +383,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$184.54</span>
                 </p>
               </div>
               <div>
@@ -317,7 +407,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$184.54</span>
                 </p>
               </div>
               <div>
@@ -341,7 +431,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$42.00</span>
+                  <span className="text-green-500">$184.54</span>
                 </p>
               </div>
               <div>
@@ -351,6 +441,434 @@ export default function Home() {
             {/* end balance div  */}
           </div>
           {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">19</p>
+            </div>
+            {/* end date div  */}
+            {/* balance and transactions divdiv  */}
+
+            <div className="bg-white p-6 rounded-lg shadow-lg flex">
+              <div className="mr-4">
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <p>
+                      Balance
+                      <br />
+                      <span className="text-green-500">$55.92</span>
+                    </p>
+                  </div>
+                  <div className="mt-14">
+                    <p>
+                      <RxTriangleDown className="text-red-500" /> $128.62
+                    </p>
+                  </div>
+                </div>
+
+                {/* end balance div  */}
+              </div>
+              <div className="flex flex-col">
+                <h2 className="underline">Transactions</h2>
+                <table>
+                  <tr>
+                    <td>VZW</td>
+                    <td className="text-red-500">$128.62</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">total:</td>
+                    <td className="text-red-500">$128.62</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* end individual card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">20</p>
+            </div>
+            {/* end date div  */}
+            {/* balance and transactions divdiv  */}
+
+            <div className="bg-white p-6 rounded-lg shadow-lg flex">
+              <div className="mr-4">
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <p>
+                      Balance
+                      <br />
+                      <span className="text-green-500">$905.92</span>
+                    </p>
+                  </div>
+                  <div className="mt-14">
+                    <p>
+                      <RxTriangleUp className="text-green-500" /> $850
+                    </p>
+                  </div>
+                </div>
+
+                {/* end balance div  */}
+              </div>
+              <div className="flex flex-col">
+                <h2 className="underline">Transactions</h2>
+                <table>
+                  <tr>
+                    <td>PayCheck</td>
+                    <td className="text-green-500">$850</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">total:</td>
+                    <td className="text-green-500">$850</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* end individual card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">21</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">22</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">23</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">24</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">25</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">26</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">27</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$905.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">28</p>
+            </div>
+            {/* end date div  */}
+            {/* balance and transactions divdiv  */}
+
+            <div className="bg-white p-6 rounded-lg shadow-lg flex">
+              <div className="mr-4">
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <p>
+                      Balance
+                      <br />
+                      <span className="text-green-500">$1865.92</span>
+                    </p>
+                  </div>
+                  <div className="mt-14">
+                    <p>
+                      <RxTriangleUp className="text-green-500" /> $960
+                    </p>
+                  </div>
+                </div>
+
+                {/* end balance div  */}
+              </div>
+              <div className="flex flex-col">
+                <h2 className="underline">Transactions</h2>
+                <table>
+                  <tr>
+                    <td>BAH</td>
+                    <td className="text-green-500">$800</td>
+                  </tr>
+                  <tr>
+                    <td>VA</td>
+                    <td className="text-green-500">$160</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">total:</td>
+                    <td className="text-green-500">$960</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* end individual card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl"> 1</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$1865.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">2</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$1865.92</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">3</p>
+            </div>
+            {/* end date div  */}
+            {/* balance and transactions divdiv  */}
+
+            <div className="bg-white p-6 rounded-lg shadow-lg flex">
+              <div className="mr-4">
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <p>
+                      Balance
+                      <br />
+                      <span className="text-green-500">$676.39</span>
+                    </p>
+                  </div>
+                  <div className="mt-14">
+                    <p>
+                      <RxTriangleDown className="text-red-500" /> $1,189.53
+                    </p>
+                  </div>
+                </div>
+
+                {/* end balance div  */}
+              </div>
+              <div className="flex flex-col">
+                <h2 className="underline">Transactions</h2>
+                <table>
+                  <tr>
+                    <td>Pay</td>
+                    <td className="text-green-500">$800</td>
+                  </tr>
+                  <tr>
+                    <td>Rent</td>
+                    <td className="text-red-500">$410</td>
+                  </tr>
+                  <tr>
+                    <td> Car</td>
+                    <td className="text-red-500">$579.53</td>
+                  </tr>
+                  <tr>
+                    <td>Down payment</td>
+                    <td className="text-red-500">$1,000</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">total:</td>
+                    <td className="text-red-500">$1,189.53</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* end individual card  */}
         </div>
 
         {/* end container */}

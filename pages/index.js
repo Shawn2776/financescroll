@@ -62,15 +62,15 @@ export default function Home() {
 
             <div className="bg-white p-6 rounded-lg shadow-lg flex">
               <div className="mr-4">
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-between">
                   <div>
                     <p>
                       Balance
                       <br />
-                      <span className="text-green-500">$303</span>
+                      <span className="text-green-500">$304</span>
                     </p>
                   </div>
-                  <div>
+                  <div className="mt-14">
                     <p>
                       <RxTriangleUp className="text-green-500" /> $303
                     </p>

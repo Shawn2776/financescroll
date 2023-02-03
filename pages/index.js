@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { BsChevronCompactRight } from "react-icons/bs";
+import { RxTriangleUp } from "react-icons/rx";
 
 export default function Home() {
   return (
@@ -29,7 +30,7 @@ export default function Home() {
           <div className="flex mt-6">
             {/* date div  */}
             <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">2</p>
+              <p className="text-5xl">5</p>
             </div>
             {/* end date div  */}
             {/* balance div  */}
@@ -38,7 +39,7 @@ export default function Home() {
                 <p>
                   Balance
                   <br />
-                  <span className="text-green-500">$450.00</span>
+                  <span className="text-green-500">$0.00</span>
                 </p>
               </div>
               <div>
@@ -53,66 +54,55 @@ export default function Home() {
           {/* indiv. card  */}
           <div className="flex mt-2">
             {/* date div  */}
-            <div className="g-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">3</p>
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">6</p>
             </div>
             {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-green-500">$50.00</span>
-                </p>
-              </div>
-              <div>
-                <BsChevronCompactRight className="text-5xl" />
-              </div>
-            </div>
-          </div>
-          {/* end balance div  */}
+            {/* balance and transactions divdiv  */}
 
-          {/* end individual card  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg flex">
+              <div className="mr-4">
+                <div className="flex flex-col">
+                  <div>
+                    <p>
+                      Balance
+                      <br />
+                      <span className="text-green-500">$303</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p>
+                      <RxTriangleUp className="text-green-500" /> $303
+                    </p>
+                  </div>
+                </div>
 
-          {/* indiv. card  */}
-          <div className="flex mt-2">
-            {/* date div  */}
-            <div className="g-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">4</p>
-            </div>
-            {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-red-500">$100.00</span>
-                </p>
+                {/* end balance div  */}
               </div>
-
-              {/* end balance div  */}
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col">
-              <h2 className="underline">Transactions</h2>
-              <table>
-                <tr>
-                  <td>Rent</td>
-                  <td className="text-red-500">$410</td>
-                </tr>
-                <tr>
-                  <td>Verizon</td>
-                  <td className="text-red-500">$50</td>
-                </tr>
-                <tr>
-                  <td colSpan={2}>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td className="font-bold">total:</td>
-                  <td className="text-red-500">$460</td>
-                </tr>
-              </table>
+              <div className="flex flex-col">
+                <h2 className="underline">Transactions</h2>
+                <table>
+                  <tr>
+                    <td>Pay</td>
+                    <td className="text-green-500">$850</td>
+                  </tr>
+                  <tr>
+                    <td>Rent</td>
+                    <td className="text-red-500">$410</td>
+                  </tr>
+                  <tr>
+                    <td>Dave</td>
+                    <td className="text-red-500">$137</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold">total:</td>
+                    <td className="text-green-500">$303</td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
 
@@ -124,7 +114,7 @@ export default function Home() {
           <div className="flex mt-2">
             {/* date div  */}
             <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">5</p>
+              <p className="text-5xl">9</p>
             </div>
             {/* end date div  */}
             {/* balance div  */}
@@ -149,7 +139,7 @@ export default function Home() {
           <div className="flex mt-2">
             {/* date div  */}
             <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">6</p>
+              <p className="text-5xl">10</p>
             </div>
             {/* end date div  */}
             {/* balance div  */}
@@ -169,102 +159,6 @@ export default function Home() {
           {/* end balance div  */}
 
           {/* end individual card  */}
-
-          {/* indiv. card  */}
-          <div className="flex mt-2">
-            {/* date div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">7</p>
-            </div>
-            {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-green-500">$42.00</span>
-                </p>
-              </div>
-              <div>
-                <BsChevronCompactRight className="text-5xl" />
-              </div>
-            </div>
-            {/* end balance div  */}
-          </div>
-          {/* end card  */}
-
-          {/* indiv. card  */}
-          <div className="flex mt-2">
-            {/* date div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">8</p>
-            </div>
-            {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-green-500">$42.00</span>
-                </p>
-              </div>
-              <div>
-                <BsChevronCompactRight className="text-5xl" />
-              </div>
-            </div>
-            {/* end balance div  */}
-          </div>
-          {/* end card  */}
-
-          {/* indiv. card  */}
-          <div className="flex mt-2">
-            {/* date div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">9</p>
-            </div>
-            {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-green-500">$42.00</span>
-                </p>
-              </div>
-              <div>
-                <BsChevronCompactRight className="text-5xl" />
-              </div>
-            </div>
-            {/* end balance div  */}
-          </div>
-          {/* end card  */}
-
-          {/* indiv. card  */}
-          <div className="flex mt-2">
-            {/* date div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
-              <p className="text-5xl">10</p>
-            </div>
-            {/* end date div  */}
-            {/* balance div  */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
-              <div>
-                <p>
-                  Balance
-                  <br />
-                  <span className="text-green-500">$842.00</span>
-                </p>
-              </div>
-              <div>
-                <BsChevronCompactRight className="text-5xl" />
-              </div>
-            </div>
-            {/* end balance div  */}
-          </div>
-          {/* end card  */}
 
           {/* indiv. card  */}
           <div className="flex mt-2">
@@ -343,6 +237,102 @@ export default function Home() {
             {/* date div  */}
             <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
               <p className="text-5xl">14</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$842.00</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">15</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$42.00</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">16</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$42.00</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">17</p>
+            </div>
+            {/* end date div  */}
+            {/* balance div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2 flex">
+              <div>
+                <p>
+                  Balance
+                  <br />
+                  <span className="text-green-500">$42.00</span>
+                </p>
+              </div>
+              <div>
+                <BsChevronCompactRight className="text-5xl" />
+              </div>
+            </div>
+            {/* end balance div  */}
+          </div>
+          {/* end card  */}
+
+          {/* indiv. card  */}
+          <div className="flex mt-2">
+            {/* date div  */}
+            <div className="bg-white p-6 rounded-lg shadow-lg mr-2">
+              <p className="text-5xl">18</p>
             </div>
             {/* end date div  */}
             {/* balance div  */}
